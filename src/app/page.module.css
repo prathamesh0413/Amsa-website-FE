@@ -1,0 +1,344 @@
+.homePageWrapper {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  position: relative; 
+  overflow: clip;    
+}
+
+.backgroundVideoContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+.backgroundVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(5, 10, 30, 0.7), rgba(5, 10, 30, 0.9));
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 60px 0; 
+}
+
+.techSection {
+  padding: 60px 0; 
+  overflow: hidden;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 40px; 
+  color: #fff;
+}
+
+.heroSection {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 40px; 
+}
+
+.heroSection h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.typingAnimation {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #a992ff;
+  display: block;
+  margin-bottom: 20px;
+  min-height: 120px; 
+}
+
+.heroSection p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.ctaButton {
+  padding: 14px 32px;
+  border-radius: 50px;
+  background: #a992ff;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(169, 146, 255, 0.3);
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(169, 146, 255, 0.5);
+}
+
+
+.offeringsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px; 
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 30px; 
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.glassCard:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  color: #a992ff;
+  margin-bottom: 20px;
+}
+
+.glassCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.glassCard p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  position: relative;
+}
+
+.processStep {
+  text-align: center;
+  padding: 20px;
+  z-index: 1;
+}
+
+.processIcon {
+  font-size: 2.5rem;
+  color: #a992ff;
+  margin-bottom: 15px;
+  background: rgba(169, 146, 255, 0.1);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.processStep h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+
+.whyUsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px; 
+}
+
+.whyUsImage img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.whyUsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+
+.reasonItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+.reasonItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.reasonIcon {
+  font-size: 1.5rem;
+  color: #a992ff;
+}
+.reasonItem span {
+  font-size: 1rem;
+}
+
+
+.marquee {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.marqueeContent {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
+
+.techLogo {
+  flex-shrink: 0;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  transition: transform 0.3s ease;
+}
+
+.techLogo:hover {
+  transform: scale(1.1);
+}
+
+.techLogo img {
+  max-width: 100px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+
+@media (max-width: 992px) {
+  .section, .techSection {
+    padding: 50px 0; 
+  }
+  .sectionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 35px;
+  }
+  .heroSection h1, .typingAnimation {
+    font-size: 2.8rem;
+    min-height: 100px;
+  }
+  .whyUsGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .whyUsImage {
+    order: 2;
+  }
+  .whyUsList {
+    order: 1;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    padding: 0 15px;
+  }
+  .section, .techSection {
+    padding: 40px 0; 
+  }
+  .sectionTitle { 
+    font-size: 2.2rem; 
+  }
+  .heroSection {
+    /* min-height: 80vh; */
+    min-height: calc(80vh - 60px); 
+
+    padding-top: 60px;
+ 
+  }
+  .heroSection h1 {
+    font-size: 2rem;
+  }
+  .typingAnimation {
+    font-size: 2.2rem;
+    min-height: 90px;
+  }
+  .heroSection p {
+    font-size: 1rem;
+  }
+  .ctaButton {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+  .offeringsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .processGrid {
+    gap: 20px;
+  }
+  .glassCard {
+    padding: 25px;
+  }
+  .whyUsGrid {
+    gap: 30px;
+  }
+  .techLogo {
+    width: 120px;
+    margin: 0 15px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .heroSection h1 {
+    font-size: 1.8rem;
+  }
+  .typingAnimation {
+    font-size: 1.9rem;
+    min-height: 80px;
+  }
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}
