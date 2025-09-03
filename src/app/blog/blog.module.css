@@ -14,7 +14,7 @@
 }
 .blogContent {
     position: relative; z-index: 1; max-width: 1200px; 
-    margin: 0 auto; padding: 100px 20px 60px;
+    margin: 0 auto; padding: 100px   20px 60px;
 }
 
 .heroSection {
