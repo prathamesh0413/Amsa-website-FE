@@ -3,7 +3,7 @@
 name = "amsa"
  
 # Directory containing the build output
-pages_build_output_dir = ".vercel/output/static"
+pages_build_output_dir = "out"
  
 # Compatibility flags for Next.js (optional, but recommended for modern Next.js apps)
 compatibility_date = "2025-09-02"
