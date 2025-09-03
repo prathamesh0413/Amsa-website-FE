@@ -2,11 +2,11 @@
   "name": "my-next-app",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev",
-  "build": "rimraf .next/cache && next build",
-  "start": "next start"
-},
+  "scripts": {
+    "dev": "next dev",
+  "build": "cross-env NEXT_PRIVATE_OUTPUT_TRACE=1 next build && next export",
+    "start": "next start"
+  },
   "dependencies": {
     "aos": "^2.3.4",
     "next": "15.4.6",
@@ -26,6 +26,7 @@
     "@types/nodemailer": "^7.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "rimraf": "^6.0.1",
