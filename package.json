@@ -32,6 +32,6 @@
     "typescript": "^5"
   }
   "scripts": {
-  "build": "next build && rm -rf .next/cache"
+  "build": "rm -rf .next/cache"
 }
 }
