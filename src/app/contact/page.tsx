@@ -11,12 +11,13 @@ import {
 } from "react-icons/fa";
 import styles from "./contact.module.css";
 
+
 type FormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  message: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    message: string;
 };
 
 export default function ContactPage() {
@@ -26,16 +27,17 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
+    
     if (name === 'firstName' || name === 'lastName') {
-      // Allow only letters and spaces
       if (/^[a-zA-Z\s]*$/.test(value)) {
         setFormData({ ...formData, [name]: value });
       }
+   
     } else if (name === 'phone') {
-      // Allow only numbers, up to 10 digits
       if (/^[0-9]*$/.test(value) && value.length <= 10) {
         setFormData({ ...formData, [name]: value });
       }
@@ -44,6 +46,7 @@ export default function ContactPage() {
     }
   };
 
+ 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
@@ -66,6 +69,7 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -77,13 +81,18 @@ export default function ContactPage() {
     const toastId = toast.loading("Sending your message...");
 
     try {
-      // **UPDATED: Direct URL is used here**
-      const backendApiUrl = "https://amsa-website-be.onrender.com";
+   
+      const backendApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-      // The check for the URL is no longer needed since it's hardcoded
-      
+     
+      if (!backendApiUrl) {
+          throw new Error("API URL is not configured. Please check your .env.local file.");
+      }
+
+   
       const apiUrl = `${backendApiUrl}/api/contact`;
 
+     
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -107,6 +116,7 @@ export default function ContactPage() {
       setIsSubmitting(false);
     }
   };
+
   
   return (
     <div className={styles.contactPageWrapper}>
@@ -162,8 +172,7 @@ export default function ContactPage() {
             <div className={styles.formGroup}>
               <input id="phone" type="tel" name="phone" placeholder=" " value={formData.phone} onChange={handleChange} />
               <label htmlFor="phone">Phone (Optional)</label>
-              {/* **FIXED: Was errors.errorMessage, now is errors.phone** */}
-              {errors.phone && <span className={styles.errorMessage}>{errors.phone}</span>}
+              {errors.phone && <span className={styles.errorMessage}>{errors.errorMessage}</span>}
             </div>
             <div className={styles.formGroup}>
               <textarea id="message" name="message" rows={5} placeholder=" " value={formData.message} onChange={handleChange} required></textarea>
@@ -178,7 +187,7 @@ export default function ContactPage() {
 
         <section className={styles.mapSection}>
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.502118515449!2d73.7184611!3d18.596472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bbb98e08c485%3A0x88605aadb7c213a6!2sGera's%20Imperium%20Rise!5e0!3m2!1sen!2sin!4v1756443565948!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.502118515449!2d73.7184611!3d18.596472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bbb98e08c485%3A0x88605aadb7c213a6!2sGera&#39;s%20Imperium%20Rise!5e0!3m2!1sen!2sin!4v1756443565948!5m2!1sen!2sin"
             className={styles.mapIframe}
             allowFullScreen
             loading="lazy" 
@@ -189,3 +198,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

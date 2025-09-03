@@ -1,27 +1,27 @@
 'use client';
-
+ 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
-
+ 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-
+ 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
+ 
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
-
+ 
   useEffect(() => {
     const original = document.body.style.overflow;
     document.body.style.overflow = menuOpen ? 'hidden' : original || '';
@@ -29,7 +29,7 @@ const Header = () => {
       document.body.style.overflow = original || '';
     };
   }, [menuOpen]);
-
+ 
   const menuItems = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
@@ -39,7 +39,7 @@ const Header = () => {
     { path: '/blog', label: 'Blog' },
     { path: '/contact', label: 'Contact' },
   ];
-
+ 
   return (
     <header
       className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${
@@ -47,7 +47,7 @@ const Header = () => {
       }`}
     >
       <div className={styles.container}>
-        
+       
         <div className={styles.logo}>
           <Link href="/" aria-label="Go to homepage">
             <Image
@@ -60,8 +60,8 @@ const Header = () => {
             />
           </Link>
         </div>
-
-      
+ 
+     
         <nav
           id="primaryNav"
           className={`${styles.nav} ${menuOpen ? styles.open : ''}`}
@@ -86,7 +86,7 @@ const Header = () => {
             })}
           </div>
         </nav>
-
+ 
        
         <button
           type="button"
@@ -104,5 +104,7 @@ const Header = () => {
     </header>
   );
 };
-
+ 
 export default Header;
+ 
+ 
