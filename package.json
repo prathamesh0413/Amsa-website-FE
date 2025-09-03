@@ -31,4 +31,7 @@
     "eslint-config-next": "15.4.6",
     "typescript": "^5"
   }
+  "scripts": {
+  "build": "next build && rm -rf .next/cache"
+}
 }
