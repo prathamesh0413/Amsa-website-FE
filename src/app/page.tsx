@@ -2,6 +2,7 @@
 
 import { useEffect, ReactNode } from "react"; 
 import AOS from "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import { TypeAnimation } from 'react-type-animation';
 import Image from "next/image";
