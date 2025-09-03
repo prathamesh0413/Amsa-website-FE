@@ -1,12 +1,10 @@
 # Ignore Next.js build cache
 .next/cache
- 
-# Ignore node modules
+.next/**/*.pack
+
+# Ignore root cache (if ever created)
+cache
+cache/**
+
+# Ignore node_modules (never deploy these)
 node_modules
- 
-# Ignore logs
-*.log
- 
-# Ignore system files
-.DS_Store
-Thumbs.db
