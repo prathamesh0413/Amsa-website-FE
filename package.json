@@ -30,6 +30,13 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "typescript": "^5"
+  },
+
+  "scripts": {
+    "dev": "next dev",
+    "build": "rimraf .next/cache && next build",
+    "start": "next start",
+    "lint": "next lint"
   }
 
 }
