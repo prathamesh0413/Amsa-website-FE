@@ -82,7 +82,8 @@ export default function ContactPage() {
 
     try {
    
-      const backendApiUrl = process.env.NEXT_PUBLIC_API_URL;
+      // const backendApiUrl = process.env.NEXT_PUBLIC_API_URL;
+ const backendApiUrl = "https://amsa-website-be.onrender.com";
 
      
       if (!backendApiUrl) {
