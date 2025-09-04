@@ -57,7 +57,7 @@
     font-size: 3rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-top: -0.8rem;
+    margin-top: 155px;
     margin-bottom: 5px;
 }
 
@@ -372,5 +372,11 @@
 
     .blogTitle {
         font-size: 2rem;
+    }
+}
+
+@media (max-width: 320px){
+    .blogTitle{
+        margin-top: 30px;
     }
 }
