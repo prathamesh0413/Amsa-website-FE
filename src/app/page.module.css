@@ -1,8 +1,8 @@
 .homePageWrapper {
   color: white;
   font-family: 'Poppins', sans-serif;
-  position: relative; 
-  overflow: clip;    
+  position: relative;
+  overflow: clip;
 }
 
 .backgroundVideoContainer {
@@ -37,57 +37,58 @@
   padding: 0 20px;
 }
 
+
 .section {
-  padding: 60px 0; 
+  padding: 10px 0 48px;
 }
 
 .techSection {
-  padding: 60px 0; 
+  padding: 16px 0 48px;
   overflow: hidden;
 }
 
 .sectionTitle {
   text-align: center;
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 40px; 
+  margin-bottom: 30px;
   color: #fff;
 }
 
 .heroSection {
-  min-height: 90vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-bottom: 40px; 
+  padding: 50px 0 30px;
 }
 
 .heroSection h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .typingAnimation {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #a992ff;
   display: block;
-  margin-bottom: 20px;
-  min-height: 120px; 
+ 
+  min-height: 100px;
 }
 
 .heroSection p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   max-width: 600px;
   color: #ccc;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .ctaButton {
-  padding: 14px 32px;
+  padding: 12px 28px;
   border-radius: 50px;
   background: #a992ff;
   color: white;
@@ -100,15 +101,14 @@
 }
 
 .ctaButton:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(169, 146, 255, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(169, 146, 255, 0.5);
 }
-
 
 .offeringsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .glassCard {
@@ -116,53 +116,50 @@
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 15px;
-  padding: 30px; 
+  padding: 25px;
   text-align: center;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .glassCard:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   background: rgba(255, 255, 255, 0.1);
 }
 
 .cardIcon {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: #a992ff;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .glassCard h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
 }
 
 .glassCard p {
   color: #ccc;
-  line-height: 1.6;
+  line-height: 1.5;
 }
-
 
 .processGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  position: relative;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 .processStep {
   text-align: center;
-  padding: 20px;
-  z-index: 1;
+  padding: 18px;
 }
 
 .processIcon {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   color: #a992ff;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   background: rgba(169, 146, 255, 0.1);
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -170,16 +167,15 @@
 }
 
 .processStep h4 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
 }
-
 
 .whyUsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 40px; 
+  gap: 30px;
 }
 
 .whyUsImage img {
@@ -191,29 +187,31 @@
 .whyUsList {
   display: flex;
   flex-direction: column;
-  gap: 15px; 
+  gap: 12px;
 }
 
 .reasonItem {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.05);
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
   transition: background 0.3s ease;
 }
+
 .reasonItem:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .reasonIcon {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #a992ff;
 }
-.reasonItem span {
-  font-size: 1rem;
-}
 
+.reasonItem span {
+  font-size: 0.95rem;
+}
 
 .marquee {
   position: relative;
@@ -230,11 +228,11 @@
 
 .techLogo {
   flex-shrink: 0;
-  width: 150px;
+  width: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
+  margin: 0 15px;
   transition: transform 0.3s ease;
 }
 
@@ -243,102 +241,121 @@
 }
 
 .techLogo img {
-  max-width: 100px;
-  max-height: 40px;
+  max-width: 90px;
+  max-height: 35px;
   object-fit: contain;
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 
 @media (max-width: 992px) {
-  .section, .techSection {
-    padding: 50px 0; 
+
+  .section,
+  .techSection {
+    padding: 16px 0 45px;
   }
+
   .sectionTitle {
-    font-size: 2.5rem;
-    margin-bottom: 35px;
+    font-size: 2.4rem;
+    margin-bottom: 28px;
   }
-  .heroSection h1, .typingAnimation {
-    font-size: 2.8rem;
-    min-height: 100px;
+
+  .heroSection h1,
+  .typingAnimation {
+    font-size: 2.6rem;
+    min-height: 90px;
   }
+
   .whyUsGrid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
   }
+
   .whyUsImage {
     order: 2;
   }
+
   .whyUsList {
     order: 1;
   }
 }
 
-
 @media (max-width: 768px) {
   .contentWrapper {
     padding: 0 15px;
   }
-  .section, .techSection {
-    padding: 40px 0; 
-  }
-  .sectionTitle { 
-    font-size: 2.2rem; 
-  }
-  .heroSection {
-    /* min-height: 80vh; */
-    min-height: calc(80vh - 60px); 
 
-    padding-top: 60px;
- 
+  .section,
+  .techSection {
+    padding: 16px 0 35px;
   }
-  .heroSection h1 {
+
+  .sectionTitle {
     font-size: 2rem;
   }
+
+  .heroSection {
+    min-height: calc(75vh - 40px);
+    padding-top: 40px;
+  }
+
+  .heroSection h1 {
+    font-size: 1.9rem;
+  }
+
   .typingAnimation {
-    font-size: 2.2rem;
-    min-height: 90px;
+    font-size: 2rem;
+    min-height: 80px;
   }
+
   .heroSection p {
-    font-size: 1rem;
-  }
-  .ctaButton {
-    padding: 12px 28px;
     font-size: 0.95rem;
   }
+
+  .ctaButton {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+
   .offeringsGrid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
-  .processGrid {
-    gap: 20px;
-  }
+
   .glassCard {
-    padding: 25px;
+    padding: 20px;
   }
+
   .whyUsGrid {
-    gap: 30px;
+    gap: 25px;
   }
+
   .techLogo {
-    width: 120px;
-    margin: 0 15px;
+    width: 100px;
+    margin: 0 12px;
   }
 }
 
-
 @media (max-width: 480px) {
   .heroSection h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
+
   .typingAnimation {
-    font-size: 1.9rem;
-    min-height: 80px;
+    font-size: 1.7rem;
+    min-height: 70px;
   }
+
   .sectionTitle {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 }
