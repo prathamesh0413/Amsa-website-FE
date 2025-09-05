@@ -25,18 +25,19 @@ const projectsData: Project[] = [
   },
   {
     id: 2,
-    title: "Flint Infotech",
-    description: "An intuitive drag-and-drop website builder designed to empower small businesses. This no-code solution allows users to create stunning, responsive websites in minutes.",
-    tags: ["React", "Java Spring Boot", "MySQL", ],
-    image: "/img/Flint.png"
-  },
-  {
-    id: 3,
     title: "Mooropan",
     description: "Developed a bespoke Shopify Plus theme and integrated custom apps for a luxury fashion brand, resulting in a 40% increase in conversion rates and a seamless user experience.",
     tags: ["React", "Java Spring Boot", "MySQL", ],
     image: "/img/moorpan.png"
   },
+  {
+    id: 3,
+    title: "Flint Infotech",
+    description: "An intuitive drag-and-drop website builder designed to empower small businesses. This no-code solution allows users to create stunning, responsive websites in minutes.",
+    tags: ["React", "Java Spring Boot", "MySQL", ],
+    image: "/img/Flint.png"
+  },
+  
   {
     id: 4,
     title: "Caryanams",
