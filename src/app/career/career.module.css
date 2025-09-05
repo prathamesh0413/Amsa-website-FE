@@ -43,7 +43,9 @@
   text-align: center;
   font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-top: 5px;
+  margin-bottom: 14px;
+  padding: 2px 0;
   color: #fff;
 }
 
@@ -61,7 +63,9 @@
   font-size: clamp(2.5rem, 6vw, 4.2rem);
   font-weight: 700;
   line-height: 1.2;
-  margin-bottom: 1rem;
+  margin-top: 60px;   /* Consistent with homepage & blog */
+  margin-bottom: 14px;
+  padding: 2px 0;
   color: #fff;
   min-height: auto;
 }
@@ -76,21 +80,14 @@
 }
 
 @keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .heroDescription {
   font-size: 1rem;
   max-width: 600px;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 20px auto;
   color: #d0d5dd;
   line-height: 1.7;
 }
@@ -112,8 +109,9 @@
   box-shadow: 0 6px 16px rgba(169, 146, 255, 0.2);
 }
 
+/* Why Join Us */
 .whyJoinUsSection {
-  padding: 60px 0;
+  padding: 30px 0;
   background-color: #0a101f;
 }
 
@@ -134,17 +132,9 @@
   animation: slideUpFadeIn 0.6s ease-out forwards;
 }
 
-.featureCard:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.featureCard:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.featureCard:nth-child(4) {
-  animation-delay: 0.3s;
-}
+.featureCard:nth-child(2) { animation-delay: 0.1s; }
+.featureCard:nth-child(3) { animation-delay: 0.2s; }
+.featureCard:nth-child(4) { animation-delay: 0.3s; }
 
 .featureCard:hover {
   transform: translateY(-4px) scale(1.02);
@@ -160,7 +150,8 @@
 .featureTitle {
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 0.8rem;
+  margin-bottom: 10px;
+  padding: 2px 0;
   color: #fff;
 }
 
@@ -170,6 +161,7 @@
   line-height: 1.6;
 }
 
+/* Team */
 .teamSection {
   padding: 60px 0;
 }
@@ -215,8 +207,9 @@
   color: #98a2b3;
 }
 
+/* Positions */
 .positionsSection {
-  padding: 5px 0;
+  padding: 40px 0;
   background-color: #0a101f;
 }
 
@@ -226,7 +219,7 @@
   background: #0c1427;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2px;
+  padding: 20px;
 }
 
 .jobRow {
@@ -246,7 +239,8 @@
 .jobTitle {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.2rem;
+  margin-bottom: 10px;
+  padding: 2px 0;
 }
 
 .jobDetails {
@@ -270,12 +264,14 @@
 
 .noOpenings {
   text-align: center;
-  padding: 10px;
+  padding: 4px;
 }
 
 .noOpenings h3 {
   font-size: 1.4rem;
-  margin-bottom: 0.8rem;
+  margin-top: 2px;
+  margin-bottom:5px;
+  padding: 2px 0;
 }
 
 .noOpenings p {
@@ -298,6 +294,7 @@
   }
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .container {
     padding: 0 1.2rem;
@@ -313,7 +310,8 @@
   }
 
   .heroTitle {
-    min-height: auto;
+    font-size: 2rem;
+    margin-top: 60px;
   }
 
   .positionsContainer {

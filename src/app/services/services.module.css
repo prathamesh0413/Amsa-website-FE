@@ -36,14 +36,16 @@
 }
 
 .section {
-    padding: 48px 0;
+    padding: 2px ;
 }
 
 .sectionTitle {
     text-align: center;
     font-size: 2.6rem;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-top: 60px;
+    margin-bottom: 14px;
+    padding: 2px 0;
     color: #fff;
 }
 
@@ -54,6 +56,7 @@
     justify-content: flex-start;
     align-items: center;
     text-align: center;
+    margin-top: 40px;
     padding: 50px 0 40px;
 }
 
@@ -70,7 +73,9 @@
     font-size: clamp(2.3rem, 6vw, 3.6rem);
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-top: 10px;   /* added spacing like other pages */
+    margin-bottom: -5px;
+    padding: 2px 0;
 }
 
 .heroDescription {
@@ -78,6 +83,7 @@
     max-width: 650px;
     color: #d0d5dd;
     line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 .accordionContainer {
@@ -126,6 +132,8 @@
 .headerTitle {
     font-size: 1.3rem;
     font-weight: 600;
+    margin-bottom: 10px;
+    padding: 2px 0;
 }
 
 .chevronIcon {
@@ -165,7 +173,8 @@
 .featuresTitle {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.8rem;
+    margin-bottom: 10px;
+    padding: 2px 0;
     color: #fff;
 }
 
@@ -185,8 +194,10 @@
 }
 
 .contentImage img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    display: block;
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -227,7 +238,8 @@
 
 .approachStep h4 {
     font-size: 1.2rem;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    padding: 2px 0;
 }
 
 .techTabsContainer {
@@ -302,6 +314,7 @@
 
     .heroTitle {
         font-size: 2.3rem;
+        margin-top: 10px;
     }
 
     .headerTitle {
@@ -319,5 +332,11 @@
 
     .featuresList {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px){
+    .accordionContent.open {
+        max-height: 1500px;
     }
 }

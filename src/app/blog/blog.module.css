@@ -32,7 +32,7 @@
     z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 70px 15px 40px;
+    padding: 0 20px; /* Matched with homepage */
 }
 
 .heroSection {
@@ -40,12 +40,13 @@
     grid-template-columns: 350px 1fr;
     gap: 30px;
     align-items: flex-start;
-    margin-bottom: 40px;
+    padding: 25px 0; /* Matched with homepage sections */
+    margin-bottom: 15px;
 }
 
 .heroLeft {
     position: sticky;
-    top: 80px;
+    /* top: 80px; */
 }
 
 .blogHeader {
@@ -54,11 +55,11 @@
 }
 
 .blogTitle {
-    font-size: 3rem;
+    font-size: 2.8rem; /* Matched with homepage */
     font-weight: 700;
     line-height: 1.2;
-    margin-top: 155px;
-    margin-bottom: 5px;
+    margin-top: 90px; /* Matched with homepage */
+    margin-bottom: 14px; /* Matched with homepage */
 }
 
 .blogSubtitle {
@@ -106,6 +107,7 @@
     border-radius: 16px;
     overflow: hidden;
     margin: 0;
+    margin-top: 90px; /* Added to move the image down */
 }
 
 .fullPostImageContainer {
@@ -170,6 +172,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
     justify-content: center;
     gap: 24px;
+    padding: 25px 0; /* Matched with homepage sections */
 }
 
 .blogCard {
@@ -356,6 +359,10 @@
         font-size: 2.6rem;
     }
 
+    .fullPostSection {
+        margin-top: 0; /* Reset margin for smaller screens */
+    }
+
     .blogSubtitle {
         margin: 0 auto;
     }
@@ -367,16 +374,22 @@
 
 @media (max-width: 768px) {
     .blogContent {
-        padding: 60px 15px 40px;
+        padding: 0 15px; /* Matched with homepage */
+    }
+    .heroSection, .postsGrid {
+        padding: 16px 0; /* Matched with homepage */
     }
 
     .blogTitle {
-        font-size: 2rem;
+        font-size: 1.9rem; /* Matched with homepage */
+        margin-top: 50px; /* Matched with homepage */
     }
 }
 
-@media (max-width: 320px){
-    .blogTitle{
-        margin-top: 30px;
+@media (max-width: 480px) {
+    .blogTitle {
+        margin-top: 80px; /* Matched with homepage */
+        font-size: 1.6rem; /* Matched with homepage */
     }
 }
+
