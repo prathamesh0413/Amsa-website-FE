@@ -2,10 +2,10 @@
 
 import { useEffect, ReactNode } from "react"; 
 import AOS from "aos";
-// import AOS from "aos";
 import "aos/dist/aos.css";
 import { TypeAnimation } from 'react-type-animation';
 import Image from "next/image";
+import Script from 'next/script';
 import {
   FaBullseye, FaPencilRuler, FaCode, FaRocket, 
   FaCogs, FaLaptopCode, FaSyncAlt, 
@@ -44,7 +44,7 @@ const reasons = [
   { icon: <FaTools />, text: "Scalable tech stack" },
   { icon: <FaGlobeAmericas />, text: "Quality assurance" },
   { icon: <FaHandshake />, text: "Timely delivery" },
-    { icon: <FaAward />, text: "Affordable pricing" },
+  { icon: <FaAward />, text: "Affordable pricing" },
 ];
 
 const techLogos = [
@@ -72,6 +72,9 @@ export default function Home() {
 
   return (
     <div className={styles.homePageWrapper}>
+      {/* CHATBOT SCRIPT ADDED HERE */}
+      <Script src='https://www.noupe.com/embed/01994cda179b7bb694892f5cf3290b943587.js' strategy="lazyOnload" />
+
       <div className={styles.backgroundVideoContainer}>
         <video autoPlay muted loop playsInline className={styles.backgroundVideo}>
           <source src="/video/bg_Video.mp4" type="video/mp4" />
