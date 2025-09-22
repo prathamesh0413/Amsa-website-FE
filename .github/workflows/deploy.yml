@@ -32,7 +32,7 @@ jobs:
       run: |
         npm install
         npm run build
-        npm run export (if required for static export)
+        #npm run export (if required for static export)
 
     - name: Build Backend
       working-directory: backend
@@ -64,12 +64,13 @@ jobs:
           sudo cp -r /home/ubuntu/Amsa-website-FE/out/* /var/www/html/
           sudo chown -R www-data:www-data /var/www/html
           sudo chmod -R 755 /var/www/html
+          pm2 start "serve -s out -l 3000" --name frontend
 
           # Install Backend Dependencies and Start Backend using PM2
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
-
+   
           # Reload Nginx to serve frontend
           sudo systemctl reload nginx
           
