@@ -1,75 +1,62 @@
-name: Deploy to EC2
+name: CI/CD Deploy
 
 on:
   push:
     branches:
-      - main  # or your deploy branch
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 🧱 Checkout Code
+    - name: Checkout Frontend
       uses: actions/checkout@v3
+      with:
+        repository: 'prathamesh0413/Amsa-website-FE'
+        path: frontend
 
-    - name: 🧰 Setup Node
+    - name: Checkout Backend
+      uses: actions/checkout@v3
+      with:
+        repository: 'prathamesh0413/Amsa-website-BE'
+        path: backend
+
+    - name: Setup Node
       uses: actions/setup-node@v3
       with:
-        node-version: 20
+        node-version: '18'
 
-    - name: 📦 Install Dependencies
+    - name: Build Frontend
+      working-directory: frontend
+      run: |
+        npm install
+        npm run build
+        # npm run export
+
+    - name: Build Backend
+      working-directory: backend
       run: npm install
 
-    - name: 🏗️ Build Project
-      run: npm run build
-
-    
-
-    - name: 📤 Upload Frontend to EC2
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        source: out/*
-        target: ~/frontend/out
-
-    - name: 📤 Upload Backend to EC2
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        source: backend/*
-        target: ~/backend/
-
-    - name: 🚀 Run Remote Deployment Script on EC2
+    - name: Deploy to EC2
       uses: appleboy/ssh-action@v0.1.6
       with:
         host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
+        username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          # Variables
-          APP_USER=${{ secrets.EC2_USERNAME }}
-          FRONTEND_DIR=/home/$APP_USER/Amsa-website-FE
-          BACKEND_DIR=/home/$APP_USER/Amsa-website-BE
+          # Copy frontend
+          rm -rf /home/ubuntu/Amsa-website-FE/out
+          cp -r ~/frontend/out /home/ubuntu/Amsa-website-FE/out
+          sudo chown -R www-data:www-data /home/ubuntu/Amsa-website-FE/out
+          sudo chmod -R 755 /home/ubuntu/Amsa-website-FE/out
 
-          echo "Deploying frontend to $FRONTEND_DIR"
-          rm -rf $FRONTEND_DIR/out
-          mkdir -p $FRONTEND_DIR
-          cp -r ~/frontend/out $FRONTEND_DIR/
-          sudo chown -R www-data:www-data $FRONTEND_DIR/out
-          sudo chmod -R 755 $FRONTEND_DIR/out
-
-          echo "Deploying backend to $BACKEND_DIR"
-          mkdir -p $BACKEND_DIR
-          cp -r ~/backend/* $BACKEND_DIR/
-          cd $BACKEND_DIR
+          # Copy backend
+          cp -r ~/backend/ubuntu /home/ubuntu/Amsa-website-BE/
+          cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
 
-          echo "Reloading NGINX"
+          # Reload Nginx
           sudo systemctl reload nginx
