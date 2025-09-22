@@ -85,7 +85,7 @@ export default function ContactPage() {
       // const backendApiUrl = process.env.NEXT_PUBLIC_API_URL;
       // const backendApiUrl = "http://localhost:3001";
  //const backendApiUrl = "https://amsa-website-be.onrender.com";
-const backendApiUrl = "http://3.92.58.96";
+const backendApiUrl = "http://98.81.204.117";
      
       if (!backendApiUrl) {
           throw new Error("API URL is not configured. Please check your .env.local file.");
