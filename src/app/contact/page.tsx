@@ -11,33 +11,33 @@ import {
 } from "react-icons/fa";
 import styles from "./contact.module.css";
 
-
 type FormData = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    message: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
 };
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
-    firstName: "", lastName: "", email: "", phone: "", message: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
-    
-    if (name === 'firstName' || name === 'lastName') {
+    if (name === "firstName" || name === "lastName") {
       if (/^[a-zA-Z\s]*$/.test(value)) {
         setFormData({ ...formData, [name]: value });
       }
-   
-    } else if (name === 'phone') {
+    } else if (name === "phone") {
       if (/^[0-9]*$/.test(value) && value.length <= 10) {
         setFormData({ ...formData, [name]: value });
       }
@@ -46,9 +46,9 @@ export default function ContactPage() {
     }
   };
 
- 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
+
     if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required.";
     if (!formData.email.trim()) {
@@ -64,11 +64,10 @@ export default function ContactPage() {
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Message must be at least 10 characters long.";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,23 +80,18 @@ export default function ContactPage() {
     const toastId = toast.loading("Sending your message...");
 
     try {
-   
-      // const backendApiUrl = process.env.NEXT_PUBLIC_API_URL;
-      // const backendApiUrl = "http://localhost:3001";
- //const backendApiUrl = "https://amsa-website-be.onrender.com";
-const backendApiUrl = "http://98.81.204.117:3001";
-     
+      // API URL (replace with environment variable if needed)
+      const backendApiUrl = "http://98.81.204.117:3001";
+
       if (!backendApiUrl) {
-          throw new Error("API URL is not configured. Please check your .env.local file.");
+        throw new Error("API URL is not configured. Please check your .env.local file.");
       }
 
-   
       const apiUrl = `${backendApiUrl}/api/contact`;
 
-     
       const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -119,7 +113,6 @@ const backendApiUrl = "http://98.81.204.117:3001";
     }
   };
 
-  
   return (
     <div className={styles.contactPageWrapper}>
       <Toaster position="top-right" reverseOrder={false} />
@@ -156,28 +149,67 @@ const backendApiUrl = "http://98.81.204.117:3001";
           <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
-                <input id="firstName" type="text" name="firstName" placeholder=" " value={formData.firstName} onChange={handleChange} required />
+                <input
+                  id="firstName"
+                  type="text"
+                  name="firstName"
+                  placeholder=" "
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                />
                 <label htmlFor="firstName">First Name</label>
                 {errors.firstName && <span className={styles.errorMessage}>{errors.firstName}</span>}
               </div>
               <div className={styles.formGroup}>
-                <input id="lastName" type="text" name="lastName" placeholder=" " value={formData.lastName} onChange={handleChange} required />
+                <input
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  placeholder=" "
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                />
                 <label htmlFor="lastName">Last Name</label>
                 {errors.lastName && <span className={styles.errorMessage}>{errors.lastName}</span>}
               </div>
             </div>
             <div className={styles.formGroup}>
-              <input id="email" type="email" name="email" placeholder=" " value={formData.email} onChange={handleChange} required />
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder=" "
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="email">Email Address</label>
               {errors.email && <span className={styles.errorMessage}>{errors.email}</span>}
             </div>
             <div className={styles.formGroup}>
-              <input id="phone" type="tel" name="phone" placeholder=" " value={formData.phone} onChange={handleChange} />
+              <input
+                id="phone"
+                type="tel"
+                name="phone"
+                placeholder=" "
+                value={formData.phone}
+                onChange={handleChange}
+              />
               <label htmlFor="phone">Phone (Optional)</label>
-              {errors.phone && <span className={styles.errorMessage}>{errors.errorMessage}</span>}
+              {errors.phone && <span className={styles.errorMessage}>{errors.phone}</span>}
             </div>
             <div className={styles.formGroup}>
-              <textarea id="message" name="message" rows={5} placeholder=" " value={formData.message} onChange={handleChange} required></textarea>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                placeholder=" "
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
               <label htmlFor="message">Your Message</label>
               {errors.message && <span className={styles.errorMessage}>{errors.message}</span>}
             </div>
