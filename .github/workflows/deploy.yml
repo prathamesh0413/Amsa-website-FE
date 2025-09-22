@@ -22,7 +22,7 @@ jobs:
         repository: 'prathamesh0413/Amsa-website-BE'
         path: backend
 
-    - name: Setup Node
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
@@ -32,7 +32,7 @@ jobs:
       run: |
         npm install
         npm run build
-        # npm run export
+        # npm run export (if required for static export)
 
     - name: Build Backend
       working-directory: backend
@@ -46,17 +46,33 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          # Copy frontend
-          #rm -rf /home/ubuntu/Amsa-website-FE/out
-          #cp -r ~/frontend/out /home/ubuntu/Amsa-website-FE/out
-          sudo chown -R www-data:www-data /home/ubuntu/Amsa-website-FE/out
-          sudo chmod -R 755 /home/ubuntu/Amsa-website-FE/out
+          # Clone Frontend and Backend repositories (if not cloned already)
+          if [ ! -d "/home/ubuntu/Amsa-website-FE" ]; then
+            git clone https://github.com/prathamesh0413/Amsa-website-FE.git /home/ubuntu/Amsa-website-FE
+          fi
 
-          # Copy backend
-          cp -r ~/backend/ubuntu /home/ubuntu/Amsa-website-BE/
+          if [ ! -d "/home/ubuntu/Amsa-website-BE" ]; then
+            git clone https://github.com/prathamesh0413/Amsa-website-BE.git /home/ubuntu/Amsa-website-BE
+          fi
+
+          # Pull latest changes for both repositories
+          cd /home/ubuntu/Amsa-website-FE && git pull origin main
+          cd /home/ubuntu/Amsa-website-BE && git pull origin main
+
+          # Copy Frontend build output to Nginx directory (adjust path as needed)
+          sudo rm -rf /var/www/html/*
+          sudo cp -r /home/ubuntu/Amsa-website-FE/out/* /var/www/html/
+          sudo chown -R www-data:www-data /var/www/html
+          sudo chmod -R 755 /var/www/html
+
+          # Install Backend Dependencies and Start Backend using PM2
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
 
-          # Reload Nginx
+          # Reload Nginx to serve frontend
           sudo systemctl reload nginx
+          
+          # Ensure Nginx and PM2 are running
+          sudo systemctl restart nginx
+          pm2 save
