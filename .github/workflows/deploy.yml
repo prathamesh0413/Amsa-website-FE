@@ -59,4 +59,4 @@ jobs:
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
 
           # Reload Nginx
-          sudo systemctl reload nginx
+          sudo systemctl reload n
