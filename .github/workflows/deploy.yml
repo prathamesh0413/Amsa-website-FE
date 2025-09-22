@@ -53,7 +53,7 @@ jobs:
           sudo chmod -R 755 /home/ubuntu/Amsa-website-FE/out
 
           # Copy backend
-          cp -r ~/backend/* /home/ubuntu/Amsa-website-BE/
+          cp -r ~/backend/ubuntu /home/ubuntu/Amsa-website-BE/
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
