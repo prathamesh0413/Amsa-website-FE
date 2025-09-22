@@ -47,8 +47,8 @@ jobs:
         port: 22
         script: |
           # Copy frontend
-          rm -rf /home/ubuntu/Amsa-website-FE/out
-          cp -r ~/frontend/out /home/ubuntu/Amsa-website-FE/out
+          #rm -rf /home/ubuntu/Amsa-website-FE/out
+          #cp -r ~/frontend/out /home/ubuntu/Amsa-website-FE/out
           sudo chown -R www-data:www-data /home/ubuntu/Amsa-website-FE/out
           sudo chmod -R 755 /home/ubuntu/Amsa-website-FE/out
 
