@@ -32,7 +32,7 @@ jobs:
       run: |
         npm install
         npm run build
-        # npm run export (if required for static export)
+        npm run export (if required for static export)
 
     - name: Build Backend
       working-directory: backend
