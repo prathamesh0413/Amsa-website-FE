@@ -1,0 +1,62 @@
+name: CI/CD Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Frontend
+      uses: actions/checkout@v3
+      with:
+        repository: 'https://github.com/prathamesh0413/Amsa-website-FE'
+        path: frontend
+
+    - name: Checkout Backend
+      uses: actions/checkout@v3
+      with:
+        repository: 'https://github.com/prathamesh0413/Amsa-website-BE'
+        path: backend
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Build Frontend
+      working-directory: frontend
+      run: |
+        npm install
+        npm run build
+        npm run export
+
+    - name: Build Backend
+      working-directory: backend
+      run: npm install
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        script: |
+          # Copy frontend
+          rm -rf /home/ubuntu/Amsa-website-FE/out
+          cp -r ~/frontend/out /home/ubuntu/Amsa-website-FE/out
+          sudo chown -R www-data:www-data /home/ubuntu/Amsa-website-FE/out
+          sudo chmod -R 755 /home/ubuntu/Amsa-website-FE/out
+
+          # Copy backend
+          cp -r ~/backend/* /home/ubuntu/Amsa-website-BE/
+          cd /home/ubuntu/Amsa-website-BE
+          npm install
+          pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
+
+          # Reload Nginx
+          sudo systemctl reload nginx
