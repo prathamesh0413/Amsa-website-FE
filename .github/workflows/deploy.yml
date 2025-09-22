@@ -48,12 +48,12 @@ jobs:
         script: |
           # Copy frontend
           rm -rf /home/ubuntu/Amsa-website-FE/out
-          cp -r ~/frontend/out /home/ubuntu/Amsa-website-FE/out
+          cp -r /home/ubuntu/Amsa-website-FE/out /home/ubuntu/Amsa-website-FE/out
           sudo chown -R www-data:www-data /home/ubuntu/Amsa-website-FE/out
           sudo chmod -R 755 /home/ubuntu/Amsa-website-FE/out
 
           # Copy backend
-          cp -r ~/backend/ubuntu /home/ubuntu/Amsa-website-BE/
+          #cp -r ~/backend/ubuntu /home/ubuntu/Amsa-website-BE/
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
