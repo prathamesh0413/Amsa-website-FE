@@ -13,13 +13,13 @@ jobs:
     - name: Checkout Frontend
       uses: actions/checkout@v3
       with:
-        repository: 'https://github.com/prathamesh0413/Amsa-website-FE'
+        repository: 'prathamesh0413/Amsa-website-FE'
         path: frontend
 
     - name: Checkout Backend
       uses: actions/checkout@v3
       with:
-        repository: 'https://github.com/prathamesh0413/Amsa-website-BE'
+        repository: 'prathamesh0413/Amsa-website-BE'
         path: backend
 
     - name: Setup Node
