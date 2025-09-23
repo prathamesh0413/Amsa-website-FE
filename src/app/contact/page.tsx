@@ -81,7 +81,7 @@ export default function ContactPage() {
 
     try {
       // API URL (replace with environment variable if needed)
-      const backendApiUrl = ":http://<EC2-Public-IP:3001>";
+      const backendApiUrl = "http://<EC2-Public-IP:3001>";
 
       if (!backendApiUrl) {
         throw new Error("API URL is not configured. Please check your .env.local file.");
