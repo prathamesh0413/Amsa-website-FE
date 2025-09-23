@@ -32,7 +32,7 @@ jobs:
       run: |
         npm install
         npm run build
-        #npm run export (if required for static export)
+        npm run export   # generates /out folder for static files
 
     - name: Build Backend
       working-directory: backend
@@ -55,25 +55,24 @@ jobs:
             git clone https://github.com/prathamesh0413/Amsa-website-BE.git /home/ubuntu/Amsa-website-BE
           fi
 
-          # Pull latest changes for both repositories
+          # Pull latest changes
           cd /home/ubuntu/Amsa-website-FE && git pull origin main
           cd /home/ubuntu/Amsa-website-BE && git pull origin main
 
-          # Copy Frontend build output to Nginx directory (adjust path as needed)
+          # Deploy frontend build to Nginx
           sudo rm -rf /var/www/html/*
           sudo cp -r /home/ubuntu/Amsa-website-FE/out/* /var/www/html/
           sudo chown -R www-data:www-data /var/www/html
           sudo chmod -R 755 /var/www/html
-          pm2 start "serve -s out -l 3000" --name frontend
 
-          # Install Backend Dependencies and Start Backend using PM2
+          # Install backend dependencies & restart with PM2
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
-   
-          # Reload Nginx to serve frontend
+
+          # Reload Nginx
           sudo systemctl reload nginx
-          
-          # Ensure Nginx and PM2 are running
+
+          # Ensure services are running
           sudo systemctl restart nginx
           pm2 save
