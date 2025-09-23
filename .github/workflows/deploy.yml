@@ -31,7 +31,7 @@ jobs:
       working-directory: frontend
       run: |
         npm install
-        npm run build   # build only, no export
+        npm run build   # Only build, no export
 
     - name: Build Backend
       working-directory: backend
@@ -45,11 +45,10 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          # Clone Frontend and Backend repositories (if not cloned already)
+          # Clone repositories if not present
           if [ ! -d "/home/ubuntu/Amsa-website-FE" ]; then
             git clone https://github.com/prathamesh0413/Amsa-website-FE.git /home/ubuntu/Amsa-website-FE
           fi
-
           if [ ! -d "/home/ubuntu/Amsa-website-BE" ]; then
             git clone https://github.com/prathamesh0413/Amsa-website-BE.git /home/ubuntu/Amsa-website-BE
           fi
@@ -58,18 +57,19 @@ jobs:
           cd /home/ubuntu/Amsa-website-FE && git pull origin main
           cd /home/ubuntu/Amsa-website-BE && git pull origin main
 
-          # Install Frontend deps & restart with PM2 (SSR mode on port 3000)
+          # Frontend setup (Next.js SSR on port 3000)
           cd /home/ubuntu/Amsa-website-FE
           npm install
+          npm run build
           pm2 restart amsa-frontend || pm2 start "npm run start" --name amsa-frontend --watch
 
-          # Install Backend deps & restart with PM2 (port 3001)
+          # Backend setup (Node.js API on port 3001)
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend --watch
 
-          # Reload Nginx
+          # Reload Nginx to apply proxy settings
           sudo systemctl reload nginx
 
-          # Ensure everything is saved
+          # Save PM2 state
           pm2 save
