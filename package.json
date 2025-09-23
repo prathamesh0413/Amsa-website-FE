@@ -5,6 +5,7 @@
 "scripts": {
   "dev": "next dev",
   "build": "cross-env NEXT_PRIVATE_OUTPUT_TRACE=1 next build",
+  "export": "next export",
   "start": "next start"
 },
   "dependencies": {
