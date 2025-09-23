@@ -31,8 +31,7 @@ jobs:
       working-directory: frontend
       run: |
         npm install
-        npm run build
-        #npm run export   # generates /out folder for static files
+        npm run build   # build only, no export
 
     - name: Build Backend
       working-directory: backend
@@ -59,20 +58,18 @@ jobs:
           cd /home/ubuntu/Amsa-website-FE && git pull origin main
           cd /home/ubuntu/Amsa-website-BE && git pull origin main
 
-          # Deploy frontend build to Nginx
-          sudo rm -rf /var/www/html/*
-          sudo cp -r /home/ubuntu/Amsa-website-FE/out/* /var/www/html/
-          sudo chown -R www-data:www-data /var/www/html
-          sudo chmod -R 755 /var/www/html
+          # Install Frontend deps & restart with PM2 (SSR mode on port 3000)
+          cd /home/ubuntu/Amsa-website-FE
+          npm install
+          pm2 restart amsa-frontend || pm2 start "npm run start" --name amsa-frontend --watch
 
-          # Install backend dependencies & restart with PM2
+          # Install Backend deps & restart with PM2 (port 3001)
           cd /home/ubuntu/Amsa-website-BE
           npm install
-          pm2 restart amsa-backend || pm2 start server.js --name amsa-backend
+          pm2 restart amsa-backend || pm2 start server.js --name amsa-backend --watch
 
           # Reload Nginx
           sudo systemctl reload nginx
 
-          # Ensure services are running
-          sudo systemctl restart nginx
+          # Ensure everything is saved
           pm2 save
