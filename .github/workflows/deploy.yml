@@ -32,7 +32,7 @@ jobs:
       run: |
         npm install
         npm run build
-        npm run export   # generates /out folder for static files
+        #npm run export   # generates /out folder for static files
 
     - name: Build Backend
       working-directory: backend
