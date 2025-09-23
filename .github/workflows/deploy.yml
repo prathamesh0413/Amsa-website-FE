@@ -76,4 +76,4 @@ jobs:
           
           # Ensure Nginx and PM2 are running
           sudo systemctl restart nginx
-          pm2 save
+          pm2 s
