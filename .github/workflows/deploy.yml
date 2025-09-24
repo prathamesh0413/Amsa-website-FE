@@ -31,7 +31,8 @@ jobs:
       working-directory: frontend
       run: |
         npm install
-        npm run build   # Only build, no export
+        npm run build
+        npm run export || true   # static export if available
 
     - name: Build Backend
       working-directory: backend
@@ -57,19 +58,20 @@ jobs:
           cd /home/ubuntu/Amsa-website-FE && git pull origin main
           cd /home/ubuntu/Amsa-website-BE && git pull origin main
 
-          # Frontend setup (Next.js SSR on port 3000)
+          # --- Frontend setup (Next.js static build for Nginx) ---
           cd /home/ubuntu/Amsa-website-FE
           npm install
           npm run build
-          pm2 restart amsa-frontend || pm2 start "npm run start" --name amsa-frontend --watch
+          npm run export || true
+          sudo rm -rf /var/www/amsa-fe
+          sudo mkdir -p /var/www/amsa-fe
+          sudo cp -r out/* /var/www/amsa-fe/
 
-          # Backend setup (Node.js API on port 3001)
+          # --- Backend setup (Node.js API runs on port 3001 via PM2) ---
           cd /home/ubuntu/Amsa-website-BE
           npm install
           pm2 restart amsa-backend || pm2 start server.js --name amsa-backend --watch
 
-          # Reload Nginx to apply proxy settings
+          # --- Reload services ---
           sudo systemctl reload nginx
-
-          # Save PM2 state
           pm2 save
